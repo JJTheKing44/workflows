@@ -1,32 +1,14 @@
-# Build Configuration
+# Clone the repo (if you haven't already)
+git clone https://github.com/JJTheKing44/attract-mode-plus-layout-designer.git
+cd attract-mode-plus-layout-designer
 
-name: Build
+# Create the workflows directory if it doesn't exist
+mkdir -p .github/workflows
 
-on:
-  push:
-    branches:
-      - main
+# Copy the build.yml file into that directory
+cp build.yml .github/workflows/
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run build
-        run: npm run build
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: ./build/
+# Commit and push
+git add .github/workflows/build.yml
+git commit -m "Add build.yml workflow"
+git push origin main
